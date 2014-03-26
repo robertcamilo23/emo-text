@@ -1,53 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/emobackground"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dip" >
+  	android:fillViewport="true">
+    
+  <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/background" >
 
-    <ImageButton
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
-        android:background="@drawable/login"
-        android:src="@drawable/login_behavior"
-        android:text="Button" />
+      <!-- Header Starts -->
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="123dp"
-        android:background="@drawable/nine"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="username"
-        android:inputType="text"
-        android:maxEms="10"
-        android:text="@string/empty" >
+      <ImageView
+          android:id="@+id/splashscreen"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:contentDescription="logo"
+          android:padding="20dp"
+          android:src="@drawable/smalllogo" />
 
-        <requestFocus />
-    </EditText>
+      <!-- Header Ends -->
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/username"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/nine"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:maxEms="10"
-        android:text="@string/empty" />
 
-</RelativeLayout>
+      <!-- Footer Start -->
+      <!-- Place footer next to header to set z-index property to minus value -->
+      <!-- Footer Ends -->
+
+
+      <!-- Login Form -->
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/header"
+          android:orientation="vertical"
+          android:padding="10dip" >
+      </LinearLayout>
+
+      <EditText
+          android:id="@+id/username"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/splashscreen"
+          android:layout_centerHorizontal="true"
+          android:ems="10"
+          android:gravity="center"
+          android:hint="username"
+          android:inputType="text"
+          android:maxEms="10"
+          android:text="@string/empty" >
+
+          <requestFocus android:layout_width="wrap_content" />
+      </EditText>
+
+      <EditText
+          android:id="@+id/password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/username"
+          android:ems="10"
+          android:gravity="center"
+          android:hint="password"
+          android:inputType="textPassword"
+          android:maxEms="10"
+          android:text="@string/empty" />
+
+      <LinearLayout
+          android:id="@+id/linearLayout1"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/password" >
+
+          <Button
+              android:id="@+id/button1"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_weight="0.69"
+              android:bottomLeftRadius="10dp"
+              android:bottomRightRadius="10dp"
+              android:text="Login" />
+
+          <Button
+              android:id="@+id/button2"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_weight="0.24"
+              android:text="Create Account" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/linearLayout1"
+          android:layout_marginRight="56dp"
+          android:orientation="vertical" >
+      </LinearLayout>
+
+      <ImageButton
+          android:id="@+id/fblogin"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/linearLayout1"
+          android:layout_centerHorizontal="true"
+          android:background="@drawable/fblogin" />
+      
+  </RelativeLayout>
+
+</ScrollView>

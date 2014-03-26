@@ -35,5 +35,6 @@
 	<string name="message_cannot_be_sent">Message not sent</string>
 	<string name="empty"></string>
 	<string name="empty1"></string>
+	<string name="fblogin_notready">Facebook Login Under Development - Please Create a New Account</string>
 
 </resources>

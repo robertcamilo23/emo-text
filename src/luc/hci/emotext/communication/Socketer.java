@@ -21,8 +21,8 @@ import android.util.Log;
 public class Socketer implements SocketerInterface
 {
 	// Here put IP_Address
-//	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://10.39.17.82/AndroidChatterDatabase/";
-	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://216.124.114.99/AndroidChatterDatabase/";
+	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://10.39.26.153/AndroidChatterDatabase/";
+// static final String AUTHENTICATION_SERVER_ADDRESS = "http://216.124.114.99/AndroidChatterDatabase/";
 
 	private int listeningPort = 0;
 

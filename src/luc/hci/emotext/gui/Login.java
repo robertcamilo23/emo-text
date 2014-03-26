@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -85,11 +86,34 @@ public class Login extends Activity
 		setContentView( R.layout.loggin_in );
 		setTitle( "Login" );
 
-		ImageButton loginButton = ( ImageButton ) findViewById( R.id.button1 );
+		Button loginButton = ( Button ) findViewById( R.id.button1 );
 
 		usernameText = ( EditText ) findViewById( R.id.username );
 		passwordText = ( EditText ) findViewById( R.id.password );
 
+	
+		Button createAccountButton = (Button) findViewById (R.id.button2);
+		createAccountButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				Intent createAccountButton = new Intent(Login.this, SignUp.class);  
+				startActivity(createAccountButton);
+				
+			}
+		});
+		
+		ImageButton fbLogin = (ImageButton) findViewById (R.id.fblogin);
+		fbLogin.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				Toast.makeText( getApplicationContext( ), R.string.fblogin_notready, Toast.LENGTH_LONG ).show( );
+				//Intent createAccountButton = new Intent(Login.this, SignUp.class);  
+				//startActivity(createAccountButton);
+				
+			}
+		});
+
+		
 		loginButton.setOnClickListener( new OnClickListener( )
 		{
 			public void onClick( View arg0 )
@@ -180,6 +204,8 @@ public class Login extends Activity
 
 	}
 
+	
+	
 	@Override
 	protected Dialog onCreateDialog( int id )
 	{
