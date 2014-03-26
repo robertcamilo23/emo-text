@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        android:theme="@android:style/Theme.Holo" >
     <activity android:name="luc.hci.emotext.gui.ListOfFriends" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"></action>
@@ -25,7 +25,7 @@
 			
 		</activity>
 		<service android:name="luc.hci.emotext.service.MessagingService"></service>
-		<activity android:name="luc.hci.emotext.gui.Login"  android:screenOrientation="portrait">
+		<activity android:name="luc.hci.emotext.gui.Login"  android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"></action>
 				<category android:name="android.intent.category.LAUNCHER">
