@@ -3,6 +3,7 @@ package luc.hci.emotext.gui;
 import luc.hci.emotext.R;
 import luc.hci.emotext.interfaces.Manager;
 import luc.hci.emotext.service.MessagingService;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -69,6 +70,9 @@ public class SignUp extends Activity
 	public void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
+		
+		ActionBar actionBar = getActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		setContentView( R.layout.signingup );
 		setTitle( "Sign up" );
