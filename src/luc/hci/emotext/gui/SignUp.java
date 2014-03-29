@@ -15,6 +15,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -70,13 +71,12 @@ public class SignUp extends Activity
 	public void onCreate( Bundle savedInstanceState )
 	{
 		super.onCreate( savedInstanceState );
-		
-		ActionBar actionBar = getActionBar();
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 		setContentView( R.layout.signingup );
 		setTitle( "Sign up" );
 
+		ActionBar actionBar = getActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		Button signUpButton = ( Button ) findViewById( R.id.signUp );
 		Button cancelButton = ( Button ) findViewById( R.id.cancel_signUp );
 		usernameText = ( EditText ) findViewById( R.id.userName );
@@ -244,4 +244,18 @@ public class SignUp extends Activity
 		super.onPause( );
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent actionBar = new Intent(this, Login.class);
+	            actionBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(actionBar);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 }
