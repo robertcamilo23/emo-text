@@ -74,6 +74,7 @@ public class SignUp extends Activity
 		setContentView( R.layout.signingup );
 		setTitle( "Sign up" );
 
+		//ActionBar
 		ActionBar actionBar = getActionBar();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		

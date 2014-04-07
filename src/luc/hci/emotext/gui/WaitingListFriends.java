@@ -4,6 +4,7 @@ import luc.hci.emotext.R;
 import luc.hci.emotext.info_type.InfoOfFriend;
 import luc.hci.emotext.interfaces.Manager;
 import luc.hci.emotext.service.MessagingService;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.NotificationManager;
 import android.content.ComponentName;
@@ -31,19 +32,17 @@ public class WaitingListFriends extends ListActivity
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
-
 		super.onCreate( savedInstanceState );
-
 		Bundle extras = getIntent( ).getExtras( );
-
 		String names = extras.getString( InfoOfFriend.FRIEND_LIST );
-
 		friendUsernames = names.split( "," );
-
 		setListAdapter( new ArrayAdapter< String >( this, android.R.layout.simple_list_item_multiple_choice, friendUsernames ) );
-
 		getListView( ).setChoiceMode( ListView.CHOICE_MODE_MULTIPLE );
 
+		//ActionBar
+		ActionBar actionBar = getActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		// canceling friend request notification
 		NotificationManager NM = ( NotificationManager ) getSystemService( NOTIFICATION_SERVICE );
 		NM.cancel( R.string.new_friend_request_exist );

@@ -11,6 +11,7 @@ import luc.hci.emotext.interfaces.Manager;
 import luc.hci.emotext.service.MessagingService;
 import luc.hci.emotext.toolbox.ControllerOfFriend;
 import luc.hci.emotext.toolbox.StorageManipulater;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -28,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -78,19 +80,17 @@ public class PerformingMessaging extends Activity
 		super.onCreate( savedInstanceState );
 
 		setContentView( R.layout.message ); // messaging_screen);
-
 		messageHistoryText = ( EditText ) findViewById( R.id.messageHistory );
-		
 		emotionImage = ( ImageView ) findViewById( R.id.emotionImage );
-
 		messageText = ( EditText ) findViewById( R.id.message );
-
 		messageText.requestFocus( );
-
 		sendMessageButton = ( Button ) findViewById( R.id.sendMessageButton );
-
 		Bundle extras = this.getIntent( ).getExtras( );
-
+		
+		//ActionBar
+		ActionBar actionBar = getActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		friend.userName = extras.getString( InfoOfFriend.USERNAME );
 		friend.ip = extras.getString( InfoOfFriend.IP );
 		friend.port = extras.getString( InfoOfFriend.PORT );
@@ -369,5 +369,19 @@ public class PerformingMessaging extends Activity
 		{
 			dbCursor.close( );
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent actionBar = new Intent(this, ListOfFriends.class);
+	            actionBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(actionBar);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 }
