@@ -1,6 +1,7 @@
 package luc.hci.emotext.gui;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class PerformingMessaging extends Activity
@@ -44,13 +47,15 @@ public class PerformingMessaging extends Activity
 	private static final int MESSAGE_CANNOT_BE_SENT = 0;
 	public String username;
 	private EditText messageText;
-	private EditText messageHistoryText;
+	private ListView messageHistoryText;
 	private ImageView emotionImage;
 	private Button sendMessageButton;
 	private Manager imService;
 	private InfoOfFriend friend = new InfoOfFriend( );
 	private StorageManipulater localstoragehandler;
 	private Cursor dbCursor;
+	private AwesomeAdapter adapter;
+	private List< Message > messages;
 	private List< String > happyWords = Arrays.asList( "DELIGHT", "CONTENT", "SMILE", "GLAD", "FREE", "CAREFREE", "HEALTHY", "PROUD", "LOVING", "CONGRATULATE", "REJOICE", "PERFECTLY", "LOL" );
 	private List< String > sadWords = Arrays.asList( "SORROW", "HEARTACHE", "SAD", "SADNESS", "DESPAIR", "MISERY", "GRIEF", "GUILT", "AFFLICTION", "CRY", "UNHAPPY", "BLUES" );
 	private List< String > angryWords = Arrays.asList( "STEW", "FUME", "FAULT", "BLAME", "HATRED", "GRUDGE", "BACKSTAB", "JERK", "HATE", "SHUT UP", "MAD", "RAGE", "WRATH", "FURY", "HATE", "TEMPER" );
@@ -80,7 +85,12 @@ public class PerformingMessaging extends Activity
 		super.onCreate( savedInstanceState );
 
 		setContentView( R.layout.message ); // messaging_screen);
-		messageHistoryText = ( EditText ) findViewById( R.id.messageHistory );
+
+		messageHistoryText = ( ListView ) findViewById( R.id.messageHistory );
+		messageHistoryText.setDivider( null );
+		messageHistoryText.setDividerHeight( 0 );
+		messages = new ArrayList< Message >( );
+
 		emotionImage = ( ImageView ) findViewById( R.id.emotionImage );
 		messageText = ( EditText ) findViewById( R.id.message );
 		messageText.requestFocus( );
@@ -98,10 +108,6 @@ public class PerformingMessaging extends Activity
 
 		setTitle( "Messaging with " + friend.userName );
 
-		// EditText friendUserName = (EditText)
-		// findViewById(R.id.friendUserName);
-		// friendUserName.setText(friend.userName);
-
 		localstoragehandler = new StorageManipulater( this );
 		dbCursor = localstoragehandler.get( friend.userName, MessagingService.USERNAME );
 
@@ -113,7 +119,7 @@ public class PerformingMessaging extends Activity
 			{
 				noOfScorer++;
 
-				this.appendToMessageHistory( dbCursor.getString( 2 ), dbCursor.getString( 3 ), true );
+				this.appendToMessageHistory( dbCursor.getString( 2 ), dbCursor.getString( 3 ) );
 				dbCursor.moveToNext( );
 			}
 		}
@@ -121,9 +127,12 @@ public class PerformingMessaging extends Activity
 
 		if ( msg != null )
 		{
-			this.appendToMessageHistory( friend.userName, msg, true );
+			this.appendToMessageHistory( friend.userName, msg );
 			( ( NotificationManager ) getSystemService( NOTIFICATION_SERVICE ) ).cancel( ( friend.userName + msg ).hashCode( ) );
 		}
+
+		adapter = new AwesomeAdapter( getApplicationContext( ), messages );
+		messageHistoryText.setAdapter( adapter );
 
 		sendMessageButton.setOnClickListener( new OnClickListener( )
 		{
@@ -135,7 +144,7 @@ public class PerformingMessaging extends Activity
 				message = messageText.getText( );
 				if ( message.length( ) > 0 )
 				{
-					appendToMessageHistory( imService.getUsername( ), message.toString( ), true );
+					addNewMessage( new Message( message.toString( ), true ) );
 
 					localstoragehandler.insert( imService.getUsername( ), friend.userName, message.toString( ) );
 
@@ -260,7 +269,7 @@ public class PerformingMessaging extends Activity
 			{
 				if ( friend.userName.equals( username ) )
 				{
-					appendToMessageHistory( username, message, false );
+					addNewMessage( new Message( message, false ) );
 					localstoragehandler.insert( username, imService.getUsername( ), message );
 
 				}
@@ -279,69 +288,77 @@ public class PerformingMessaging extends Activity
 
 	private MessageReceiver messageReceiver = new MessageReceiver( );
 
-	public void appendToMessageHistory( String username, String message, boolean local )
+	public void appendToMessageHistory( String username, String message )
 	{
+		Log.d( "append", username + message );
 		if ( username != null && message != null )
 		{
-			messageHistoryText.append( username + ":\n" );
-			messageHistoryText.append( message + "\n" );
-			if ( !local )
+			if ( username.equals( friend.userName ) )
 			{
+				messages.add( new Message( message, false ) );
 				setBackgroundEmotionColor( message.toUpperCase( ) );
+			}
+			else
+			{
+				messages.add( new Message( message, true ) );
 			}
 		}
 	}
 
+	private void addNewMessage( Message m )
+	{
+		if ( !m.isMine )
+		{
+			setBackgroundEmotionColor( m.getMessage( ).toUpperCase( ) );
+		}
+		messages.add( m );
+		adapter.notifyDataSetChanged( );
+		messageHistoryText.setSelection( messages.size( ) - 1 );
+	}
+
 	private void setBackgroundEmotionColor( String message )
 	{
-		// HAPPY, YELLOW
+		// HAPPY, GREEN
 		if ( messageHaveEmotion( message, happyWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.YELLOW );
 			emotionImage.setImageResource( R.drawable.happiness );
-			emotionImage.setBackgroundColor( Color.YELLOW );
+			emotionImage.setBackgroundColor( Color.GREEN );
 		}
-		// SURPRISE, CYAN
+		// SURPRISE, YELLOW
 		else if ( messageHaveEmotion( message, surpriseWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.CYAN );
 			emotionImage.setImageResource( R.drawable.surprise );
-			emotionImage.setBackgroundColor( Color.CYAN );
+			emotionImage.setBackgroundColor( Color.YELLOW );
 		}
 		// ANGRY, RED
 		else if ( messageHaveEmotion( message, angryWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.RED );
 			emotionImage.setImageResource( R.drawable.anger );
 			emotionImage.setBackgroundColor( Color.RED );
 		}
-		// DISGUST, ORANGE
+		// DISGUST, MAGENTA
 		else if ( messageHaveEmotion( message, disgustWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.rgb( 255, 153, 0 ) );
 			emotionImage.setImageResource( R.drawable.disgust );
-			emotionImage.setBackgroundColor( Color.rgb( 255, 153, 0 ) );
+			emotionImage.setBackgroundColor( Color.MAGENTA );
 		}
-		// FEAR, GREEN
+		// FEAR, ORANGE
 		else if ( messageHaveEmotion( message, fearWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.GREEN );
 			emotionImage.setImageResource( R.drawable.fear );
-			emotionImage.setBackgroundColor( Color.GREEN );
+			emotionImage.setBackgroundColor( Color.rgb( 255, 153, 0 ) );
 		}
 		// SAD, BLUE
 		else if ( messageHaveEmotion( message, sadWords ) )
 		{
-			messageHistoryText.setBackgroundColor( Color.BLUE );
 			emotionImage.setImageResource( R.drawable.sadness );
 			emotionImage.setBackgroundColor( Color.BLUE );
 		}
-		// NEUTRAL, WHITE - DEFAULT
+		// NEUTRAL, DEFAULT
 		else
 		{
-			messageHistoryText.setBackgroundColor( Color.WHITE );
 			emotionImage.setImageResource( 0 );
-			emotionImage.setBackgroundColor( Color.WHITE );
+			emotionImage.setBackgroundColor( Color.TRANSPARENT );
 		}
 	}
 
