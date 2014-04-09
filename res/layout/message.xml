@@ -10,27 +10,8 @@
 	    android:padding="10dip" 
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent">
-<!--    
-    <TextView 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:text="Friend:"
-    />
     
-    <EditText android:id="@+id/friendUserName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:singleLine="true"
-        android:editable="false" />
---> 
-    <TextView   android:layout_width="fill_parent"
-       			android:layout_height="wrap_content"
-        		android:layout_marginBottom="10dip"
-        		android:text="Messages:"/>
-    
-    <EditText
+    <ListView
         android:id="@+id/messageHistory"
         android:layout_width="fill_parent"
         android:layout_height="222dp"
