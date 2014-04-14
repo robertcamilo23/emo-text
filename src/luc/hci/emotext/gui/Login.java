@@ -91,7 +91,7 @@ public class Login extends Activity
 		usernameText = ( EditText ) findViewById( R.id.username );
 		passwordText = ( EditText ) findViewById( R.id.password );
 
-	
+		
 		Button createAccountButton = (Button) findViewById (R.id.button2);
 		createAccountButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

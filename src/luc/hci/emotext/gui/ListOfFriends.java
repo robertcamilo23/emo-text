@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -110,6 +111,17 @@ public class ListOfFriends extends ListActivity
 				holder.icon = ( ImageView ) convertView.findViewById( R.id.icon );
 
 				convertView.setTag( holder );
+				
+				Button createAccountButton = (Button) findViewById (R.id.add_friends);
+				createAccountButton.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						
+						Intent createAccountButton = new Intent(ListOfFriends.this, FriendAdder.class);  
+						startActivity(createAccountButton);
+						
+					}
+				});
+				
 			}
 			else
 			{

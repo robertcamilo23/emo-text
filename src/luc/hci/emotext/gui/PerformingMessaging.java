@@ -35,8 +35,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -49,7 +49,8 @@ public class PerformingMessaging extends Activity
 	private EditText messageText;
 	private ListView messageHistoryText;
 	private ImageView emotionImage;
-	private Button sendMessageButton;
+	private ImageButton sendMessageButton;
+	private ImageButton camButton;
 	private Manager imService;
 	private InfoOfFriend friend = new InfoOfFriend( );
 	private StorageManipulater localstoragehandler;
@@ -91,10 +92,13 @@ public class PerformingMessaging extends Activity
 		messageHistoryText.setDividerHeight( 0 );
 		messages = new ArrayList< Message >( );
 
+		//Camera button to send pictures / interpret emotion
+		camButton = (ImageButton) findViewById(R.id.camButton);
+				
 		emotionImage = ( ImageView ) findViewById( R.id.emotionImage );
 		messageText = ( EditText ) findViewById( R.id.message );
 		messageText.requestFocus( );
-		sendMessageButton = ( Button ) findViewById( R.id.sendMessageButton );
+		sendMessageButton = ( ImageButton ) findViewById( R.id.sendMessageButton );
 		Bundle extras = this.getIntent( ).getExtras( );
 		
 		//ActionBar
@@ -134,6 +138,15 @@ public class PerformingMessaging extends Activity
 		adapter = new AwesomeAdapter( getApplicationContext( ), messages );
 		messageHistoryText.setAdapter( adapter );
 
+		camButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				Toast.makeText( getApplicationContext( ), R.string.cam_notready, Toast.LENGTH_SHORT ).show( );
+				//Intent to take a picture and send it on the message.
+				
+			}
+		});
+		
 		sendMessageButton.setOnClickListener( new OnClickListener( )
 		{
 			CharSequence message;
