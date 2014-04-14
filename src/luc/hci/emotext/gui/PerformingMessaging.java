@@ -57,12 +57,12 @@ public class PerformingMessaging extends Activity
 	private Cursor dbCursor;
 	private AwesomeAdapter adapter;
 	private List< Message > messages;
-	private List< String > happyWords = Arrays.asList( "DELIGHT", "CONTENT", "SMILE", "GLAD", "FREE", "CAREFREE", "HEALTHY", "PROUD", "LOVING", "CONGRATULATE", "REJOICE", "PERFECTLY", "LOL" );
-	private List< String > sadWords = Arrays.asList( "SORROW", "HEARTACHE", "SAD", "SADNESS", "DESPAIR", "MISERY", "GRIEF", "GUILT", "AFFLICTION", "CRY", "UNHAPPY", "BLUES" );
-	private List< String > angryWords = Arrays.asList( "STEW", "FUME", "FAULT", "BLAME", "HATRED", "GRUDGE", "BACKSTAB", "JERK", "HATE", "SHUT UP", "MAD", "RAGE", "WRATH", "FURY", "HATE", "TEMPER" );
-	private List< String > fearWords = Arrays.asList( "FEAR", "SCARED", "PHOBIA", "JITTERS", "CREEPY", "FREAKED", "SCARY", "FRIGHT", "FEELING", "AFRAID" );
-	private List< String > surpriseWords = Arrays.asList( "!", "WOW", "SHOCKED", "SURPRISED", "SURPRISE", "UNEXPECTED", "SUDDEN", "PLEASANTLY", "ABACK", "GAPE", "VISIBLY", "OMG" );
-	private List< String > disgustWords = Arrays.asList( "DISGUSTING", "GROSS", "VOMIT", "YUCK", "REVULSION", "PUKE", "NASTY", "WRONG", "REVOLTING", "REPEL", "MANGLE", "OVERCOME", "SHEER" );
+	private List< String > happyWords = Arrays.asList( "I'm", "DELIGHTED", "CONTENT", "SMILE", "GLAD", "FREE", "CAREFREE", "HEALTHY", "PROUD", "LOVING", "CONGRATULATE", "REJOICE", "PERFECTLY", "LOL", "lol", "jk" );
+	private List< String > sadWords = Arrays.asList( "I'm", "SORROW", "HEARTACHE", "SAD", "SADNESS", "DESPAIR", "MISERY", "GRIEF", "GUILT", "AFFLICTION", "CRY", "UNHAPPY", "BLUES" );
+	private List< String > angryWords = Arrays.asList( "I'm", "fuck", "STEW", "FUME", "FAULT", "BLAME", "HATRED", "GRUDGE", "BACKSTAB", "JERK", "HATE", "SHUT UP", "MAD", "RAGE", "WRATH", "FURY", "HATE", "TEMPER" );
+	private List< String > fearWords = Arrays.asList( "I'm", "FEAR", "SCARED", "PHOBIA", "JITTERS", "CREEPY", "FREAKED", "SCARY", "FRIGHT", "FEELING", "AFRAID" );
+	private List< String > surpriseWords = Arrays.asList( "I'm", "!", "WOW", "SHOCKED", "SURPRISED", "SURPRISE", "UNEXPECTED", "SUDDEN", "PLEASANTLY", "ABACK", "GAPE", "VISIBLY", "OMG" );
+	private List< String > disgustWords = Arrays.asList( "I'm", "DISGUSTING", "GROSS", "VOMIT", "YUCK", "REVULSION", "PUKE", "NASTY", "WRONG", "REVOLTING", "REPEL", "MANGLE", "OVERCOME", "SHEER" );
 
 	private ServiceConnection mConnection = new ServiceConnection( )
 	{
