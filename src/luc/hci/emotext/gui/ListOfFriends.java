@@ -6,7 +6,6 @@ import luc.hci.emotext.info_type.InfoStatus;
 import luc.hci.emotext.interfaces.Manager;
 import luc.hci.emotext.service.MessagingService;
 import luc.hci.emotext.toolbox.ControllerOfFriend;
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -196,9 +195,6 @@ public class ListOfFriends extends ListActivity
 		setContentView( R.layout.list_friends );
 		friendAdapter = new FriendListAdapter( this );
 		
-		//ActionBar
-		ActionBar actionBar = getActionBar();
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void updateData( InfoOfFriend[ ] friends, InfoOfFriend[ ] unApprovedFriends )
@@ -329,17 +325,4 @@ public class ListOfFriends extends ListActivity
 		super.onActivityResult( requestCode, resultCode, data );
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent actionBar = new Intent(this, Login.class);
-	            actionBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(actionBar);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 }
