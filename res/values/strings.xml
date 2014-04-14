@@ -38,5 +38,7 @@
 	<string name="fblogin_notready">Facebook Login Under Development - Please Create a New Account</string>
 	<string name="cam_notready">Camera Interphase Under Development</string>
 	<string name="enter_message">Enter Message</string>
+	<string name="find_friend">Enter username</string>
+	<string name="friend_username">Friend username:</string>
 	
 </resources>

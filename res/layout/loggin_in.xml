@@ -70,18 +70,18 @@
 
           <Button
               android:id="@+id/button1"
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="match_parent"
-              android:layout_weight="0.69"
+              android:layout_weight="1"
               android:bottomLeftRadius="10dp"
               android:bottomRightRadius="10dp"
               android:text="Login" />
 
           <Button
               android:id="@+id/button2"
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="match_parent"
-              android:layout_weight="0.24"
+              android:layout_weight="1"
               android:text="Create Account" />
       </LinearLayout>
 

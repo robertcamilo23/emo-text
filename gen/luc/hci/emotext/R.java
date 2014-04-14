@@ -361,7 +361,9 @@ containing a value of this type.
         public static final int exit_application=0x7f070029;
         public static final int fblogin_notready=0x7f07003d;
         public static final int fill_both_username_and_password=0x7f070025;
+        public static final int find_friend=0x7f070040;
         public static final int friend_list=0x7f07001a;
+        public static final int friend_username=0x7f070041;
         public static final int local_service_connected=0x7f070022;
         public static final int local_service_started=0x7f070020;
         public static final int local_service_stopped=0x7f070021;
