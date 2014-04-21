@@ -1,12 +1,10 @@
 package luc.hci.emotext.gui;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import luc.hci.emotext.R;
-
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,18 +69,52 @@ public class AwesomeAdapter extends BaseAdapter
 		// to right
 		if ( message.isMine( ) )
 		{
-			holder.message.setBackgroundResource( R.drawable.speech_bubble_green );
+			holder.message.setBackgroundResource( R.drawable.speech_bubble_white );
 			lp.gravity = Gravity.RIGHT;
 		}
 		// If not mine then it is from sender to show orange background and
 		// align to left
 		else
 		{
-			holder.message.setBackgroundResource( R.drawable.speech_bubble_orange );
+			// HAPPY, GREEN
+			if ( EmotionEvaluation.happyMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_green_friend );
+			}
+			// SURPRISE, YELLOW
+			else if ( EmotionEvaluation.surpriseMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_yellow_friend );
+			}
+			// ANGRY, RED
+			else if ( EmotionEvaluation.angryMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_red_friend );
+			}
+			// DISGUST, MAGENTA
+			else if ( EmotionEvaluation.disgustMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_magenta_friend );
+			}
+			// FEAR, ORANGE
+			else if ( EmotionEvaluation.fearMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_orange_friend );
+			}
+			// SAD, BLUE
+			else if ( EmotionEvaluation.sadMessage( message.getMessage( ) ) )
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_blue_friend );
+			}
+			// NEUTRAL, DEFAULT
+			else
+			{
+				holder.message.setBackgroundResource( R.drawable.speech_bubble_white_friend );
+			}
 			lp.gravity = Gravity.LEFT;
 		}
 		holder.message.setLayoutParams( lp );
-		holder.message.setTextColor( R.color.textColor );
+		holder.message.setTextColor( Color.BLACK );
 
 		return convertView;
 	}

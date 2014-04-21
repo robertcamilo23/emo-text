@@ -40,10 +40,18 @@ public final class R {
         public static final int sadness=0x7f02000e;
         public static final int send_icon=0x7f02000f;
         public static final int smalllogo=0x7f020010;
-        public static final int speech_bubble_green=0x7f020011;
-        public static final int speech_bubble_orange=0x7f020012;
-        public static final int splash_logo=0x7f020013;
-        public static final int surprise=0x7f020014;
+        public static final int speech_bubble_blue_friend=0x7f020011;
+        public static final int speech_bubble_green=0x7f020012;
+        public static final int speech_bubble_green_friend=0x7f020013;
+        public static final int speech_bubble_magenta_friend=0x7f020014;
+        public static final int speech_bubble_orange=0x7f020015;
+        public static final int speech_bubble_orange_friend=0x7f020016;
+        public static final int speech_bubble_red_friend=0x7f020017;
+        public static final int speech_bubble_white=0x7f020018;
+        public static final int speech_bubble_white_friend=0x7f020019;
+        public static final int speech_bubble_yellow_friend=0x7f02001a;
+        public static final int splash_logo=0x7f02001b;
+        public static final int surprise=0x7f02001c;
     }
     public static final class id {
         public static final int addFriend=0x7f070003;

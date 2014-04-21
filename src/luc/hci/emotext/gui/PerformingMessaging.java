@@ -2,7 +2,6 @@ package luc.hci.emotext.gui;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import luc.hci.emotext.R;
@@ -57,12 +56,6 @@ public class PerformingMessaging extends Activity
 	private Cursor dbCursor;
 	private AwesomeAdapter adapter;
 	private List< Message > messages;
-	private List< String > happyWords = Arrays.asList( "I'm", "DELIGHTED", "CONTENT", "SMILE", "GLAD", "FREE", "CAREFREE", "HEALTHY", "PROUD", "LOVING", "CONGRATULATE", "REJOICE", "PERFECTLY", "LOL", "lol", "jk" );
-	private List< String > sadWords = Arrays.asList( "I'm", "SORROW", "HEARTACHE", "SAD", "SADNESS", "DESPAIR", "MISERY", "GRIEF", "GUILT", "AFFLICTION", "CRY", "UNHAPPY", "BLUES" );
-	private List< String > angryWords = Arrays.asList( "I'm", "fuck", "STEW", "FUME", "FAULT", "BLAME", "HATRED", "GRUDGE", "BACKSTAB", "JERK", "HATE", "SHUT UP", "MAD", "RAGE", "WRATH", "FURY", "HATE", "TEMPER" );
-	private List< String > fearWords = Arrays.asList( "I'm", "FEAR", "SCARED", "PHOBIA", "JITTERS", "CREEPY", "FREAKED", "SCARY", "FRIGHT", "FEELING", "AFRAID" );
-	private List< String > surpriseWords = Arrays.asList( "I'm", "!", "WOW", "SHOCKED", "SURPRISED", "SURPRISE", "UNEXPECTED", "SUDDEN", "PLEASANTLY", "ABACK", "GAPE", "VISIBLY", "OMG" );
-	private List< String > disgustWords = Arrays.asList( "I'm", "DISGUSTING", "GROSS", "VOMIT", "YUCK", "REVULSION", "PUKE", "NASTY", "WRONG", "REVOLTING", "REPEL", "MANGLE", "OVERCOME", "SHEER" );
 
 	private ServiceConnection mConnection = new ServiceConnection( )
 	{
@@ -92,19 +85,19 @@ public class PerformingMessaging extends Activity
 		messageHistoryText.setDividerHeight( 0 );
 		messages = new ArrayList< Message >( );
 
-		//Camera button to send pictures / interpret emotion
-		camButton = (ImageButton) findViewById(R.id.camButton);
-				
+		// Camera button to send pictures / interpret emotion
+		camButton = ( ImageButton ) findViewById( R.id.camButton );
+
 		emotionImage = ( ImageView ) findViewById( R.id.emotionImage );
 		messageText = ( EditText ) findViewById( R.id.message );
 		messageText.requestFocus( );
 		sendMessageButton = ( ImageButton ) findViewById( R.id.sendMessageButton );
 		Bundle extras = this.getIntent( ).getExtras( );
-		
-		//ActionBar
-		ActionBar actionBar = getActionBar();
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
+		// ActionBar
+		ActionBar actionBar = getActionBar( );
+		getActionBar( ).setDisplayHomeAsUpEnabled( true );
+
 		friend.userName = extras.getString( InfoOfFriend.USERNAME );
 		friend.ip = extras.getString( InfoOfFriend.IP );
 		friend.port = extras.getString( InfoOfFriend.PORT );
@@ -138,15 +131,17 @@ public class PerformingMessaging extends Activity
 		adapter = new AwesomeAdapter( getApplicationContext( ), messages );
 		messageHistoryText.setAdapter( adapter );
 
-		camButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				
+		camButton.setOnClickListener( new View.OnClickListener( )
+		{
+			public void onClick( View v )
+			{
+
 				Toast.makeText( getApplicationContext( ), R.string.cam_notready, Toast.LENGTH_SHORT ).show( );
-				//Intent to take a picture and send it on the message.
-				
+				// Intent to take a picture and send it on the message.
+
 			}
-		});
-		
+		} );
+
 		sendMessageButton.setOnClickListener( new OnClickListener( )
 		{
 			CharSequence message;
@@ -213,6 +208,7 @@ public class PerformingMessaging extends Activity
 
 		} );
 
+		messageHistoryText.setSelection( messages.size( ) - 1 );
 	}
 
 	@Override
@@ -309,7 +305,7 @@ public class PerformingMessaging extends Activity
 			if ( username.equals( friend.userName ) )
 			{
 				messages.add( new Message( message, false ) );
-				setBackgroundEmotionColor( message.toUpperCase( ) );
+				setBackgroundEmotionColor( message );
 			}
 			else
 			{
@@ -320,9 +316,9 @@ public class PerformingMessaging extends Activity
 
 	private void addNewMessage( Message m )
 	{
-		if ( !m.isMine )
+		if ( !m.isMine( ) )
 		{
-			setBackgroundEmotionColor( m.getMessage( ).toUpperCase( ) );
+			setBackgroundEmotionColor( m.getMessage( ) );
 		}
 		messages.add( m );
 		adapter.notifyDataSetChanged( );
@@ -332,59 +328,46 @@ public class PerformingMessaging extends Activity
 	private void setBackgroundEmotionColor( String message )
 	{
 		// HAPPY, GREEN
-		if ( messageHaveEmotion( message, happyWords ) )
+		if ( EmotionEvaluation.happyMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.happiness );
-			emotionImage.setBackgroundColor( Color.GREEN );
+			setEmotionImageAndBackground( R.drawable.happiness, Color.GREEN );
 		}
 		// SURPRISE, YELLOW
-		else if ( messageHaveEmotion( message, surpriseWords ) )
+		else if ( EmotionEvaluation.surpriseMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.surprise );
-			emotionImage.setBackgroundColor( Color.YELLOW );
+			setEmotionImageAndBackground( R.drawable.surprise, Color.YELLOW );
 		}
 		// ANGRY, RED
-		else if ( messageHaveEmotion( message, angryWords ) )
+		else if ( EmotionEvaluation.angryMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.anger );
-			emotionImage.setBackgroundColor( Color.RED );
+			setEmotionImageAndBackground( R.drawable.anger, Color.RED );
 		}
 		// DISGUST, MAGENTA
-		else if ( messageHaveEmotion( message, disgustWords ) )
+		else if ( EmotionEvaluation.disgustMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.disgust );
-			emotionImage.setBackgroundColor( Color.MAGENTA );
+			setEmotionImageAndBackground( R.drawable.disgust, Color.rgb( 115, 29, 146 ) );
 		}
 		// FEAR, ORANGE
-		else if ( messageHaveEmotion( message, fearWords ) )
+		else if ( EmotionEvaluation.fearMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.fear );
-			emotionImage.setBackgroundColor( Color.rgb( 255, 153, 0 ) );
+			setEmotionImageAndBackground( R.drawable.fear, Color.rgb( 255, 153, 0 ) );
 		}
 		// SAD, BLUE
-		else if ( messageHaveEmotion( message, sadWords ) )
+		else if ( EmotionEvaluation.sadMessage( message ) )
 		{
-			emotionImage.setImageResource( R.drawable.sadness );
-			emotionImage.setBackgroundColor( Color.BLUE );
+			setEmotionImageAndBackground( R.drawable.sadness, Color.BLUE );
 		}
 		// NEUTRAL, DEFAULT
 		else
 		{
-			emotionImage.setImageResource( 0 );
-			emotionImage.setBackgroundColor( Color.TRANSPARENT );
+			setEmotionImageAndBackground( 0, Color.TRANSPARENT );
 		}
 	}
 
-	private boolean messageHaveEmotion( String message, List< String > emotionList )
+	private void setEmotionImageAndBackground( int image, int color )
 	{
-		for ( String emotionWord : emotionList )
-		{
-			if ( message.contains( emotionWord ) )
-			{
-				return true;
-			}
-		}
-		return false;
+		emotionImage.setImageResource( image );
+		emotionImage.setBackgroundColor( color );
 	}
 
 	@Override
@@ -400,18 +383,20 @@ public class PerformingMessaging extends Activity
 			dbCursor.close( );
 		}
 	}
-	
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent actionBar = new Intent(this, ListOfFriends.class);
-	            actionBar.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(actionBar);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+	public boolean onOptionsItemSelected( MenuItem item )
+	{
+		switch ( item.getItemId( ) )
+		{
+		case android.R.id.home:
+			// app icon in action bar clicked; go home
+			Intent actionBar = new Intent( this, ListOfFriends.class );
+			actionBar.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			startActivity( actionBar );
+			return true;
+		default:
+			return super.onOptionsItemSelected( item );
+		}
 	}
 }
