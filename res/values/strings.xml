@@ -40,6 +40,6 @@
 	<string name="enter_message">Enter Message</string>
 	<string name="find_friend">Enter username</string>
 	<string name="friend_username">Friend username:</string>
-	<string name="timestamp"></string>
+	<string name="delete">Delete</string>
 	
 </resources>

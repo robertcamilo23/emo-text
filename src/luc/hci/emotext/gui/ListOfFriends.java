@@ -21,11 +21,16 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -134,6 +139,13 @@ public class ListOfFriends extends ListActivity
 			holder.icon.setImageBitmap( friends[ position ].status == InfoStatus.ONLINE ? mOnlineIcon : mOfflineIcon );
 
 			return convertView;
+		}
+
+		
+		public void remove(ListView l, View v, int position, long id) {
+			// TODO Auto-generated method stub
+			//New code to remove friends:
+			
 		}
 
 	}
@@ -261,7 +273,7 @@ public class ListOfFriends extends ListActivity
 		i.putExtra( InfoOfFriend.IP, friend.ip );
 		startActivity( i );
 	}
-
+	
 	@Override
 	protected void onPause( )
 	{
@@ -323,6 +335,28 @@ public class ListOfFriends extends ListActivity
 	protected void onActivityResult( int requestCode, int resultCode, Intent data )
 	{
 		super.onActivityResult( requestCode, resultCode, data );
+	}	
+	
+	// TODO Long Click Activate Menu Inflater this is to test it first
+	public boolean onItemLongClick(ListView l, View v, int position, long id) {
+
+	    String res = Long.toString(id);
+	    Toast toast = Toast.makeText(this, res, Toast.LENGTH_SHORT);
+	    toast.show();
+
+	    return true;
 	}
 	
+	// TODO Menu Inflater this will call the menu with the option to delete a friend
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+	      AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+	      switch(item.getItemId()) {
+	          case R.id.delete:
+	        // remove stuff here
+	                return true;
+	          default:
+	                return super.onContextItemSelected(item);
+	      }
+	}
 }
