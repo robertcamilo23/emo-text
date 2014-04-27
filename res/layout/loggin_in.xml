@@ -22,6 +22,7 @@
 
       <!-- Header Ends -->
 
+
       <!-- Login Form -->
 
       <LinearLayout
@@ -86,6 +87,7 @@
       </LinearLayout>
 
       <LinearLayout
+          android:id="@+id/linearLayout2"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_alignParentRight="true"
@@ -94,14 +96,13 @@
           android:orientation="vertical" >
       </LinearLayout>
 
-      <ImageButton
-          android:id="@+id/fblogin"
+      <com.facebook.widget.LoginButton
+          android:id="@+id/authButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/linearLayout1"
-          android:layout_centerHorizontal="true"
-          android:background="@drawable/fblogin" />
-      
+          android:layout_below="@+id/linearLayout2"
+          android:layout_centerHorizontal="true" />
+
   </RelativeLayout>
 
 </ScrollView>

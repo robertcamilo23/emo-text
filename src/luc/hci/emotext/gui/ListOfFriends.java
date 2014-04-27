@@ -347,16 +347,4 @@ public class ListOfFriends extends ListActivity
 	    return true;
 	}
 	
-	// TODO Menu Inflater this will call the menu with the option to delete a friend
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-	      AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-	      switch(item.getItemId()) {
-	          case R.id.delete:
-	        // remove stuff here
-	                return true;
-	          default:
-	                return super.onContextItemSelected(item);
-	      }
-	}
 }

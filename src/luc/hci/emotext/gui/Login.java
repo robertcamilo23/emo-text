@@ -102,18 +102,6 @@ public class Login extends Activity
 			}
 		});
 		
-		ImageButton fbLogin = (ImageButton) findViewById (R.id.fblogin);
-		fbLogin.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				
-				Toast.makeText( getApplicationContext( ), R.string.fblogin_notready, Toast.LENGTH_LONG ).show( );
-				//Intent createAccountButton = new Intent(Login.this, SignUp.class);  
-				//startActivity(createAccountButton);
-				
-			}
-		});
-
-		
 		loginButton.setOnClickListener( new OnClickListener( )
 		{
 			public void onClick( View arg0 )
