@@ -14,8 +14,9 @@
 
         <ListView
             android:id="@+id/messageHistory"
-            android:layout_width="fill_parent"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+     		android:layout_height="0dp"
+        	android:layout_weight="0.81"
             android:clickable="true"
             android:editable="false"
             android:gravity="top"
@@ -25,43 +26,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
+            <ImageButton
+                android:id="@+id/emotionImage"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/app_name"
+                android:description="@string/app_name"
+                android:scaleType="centerCrop" />
+
+            
             <EditText
                 android:id="@+id/message"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="top"
-                android:hint="@string/enter_message" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:hint="@string/enter_message"
+                android:inputType="textAutoCorrect|textMultiLine" />
                 
-                 <ImageView
-            		android:id="@+id/emotionImage"
-            		android:layout_width="76dp"
-                    android:layout_height="72dp"
-                    android:scaleType="fitCenter" />
+         	<ImageButton
+         	    android:id="@+id/sendMessageButton"
+         	    android:layout_width="44dp"
+         	    android:layout_height="44dp"
+         	    android:contentDescription="@string/app_name"
+         	    android:background="@android:color/transparent"
+         	    android:scaleType="centerCrop"
+         	    android:src="@drawable/send_icon" />
 
-                <ImageButton
-                    android:id="@+id/sendMessageButton"
-                    android:layout_width="76dp"
-                    android:layout_height="72dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/send_icon"/>
-
-                <ImageButton
-                    android:id="@+id/camButton"
-                    android:layout_width="76dp"
-                    android:layout_height="72dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/cam_button"/>
-            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

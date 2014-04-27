@@ -58,10 +58,9 @@ public final class R {
         public static final int add_friends=0x7f070005;
         public static final int button1=0x7f07000b;
         public static final int button2=0x7f07000c;
-        public static final int camButton=0x7f070012;
         public static final int cancel=0x7f070004;
-        public static final int cancel_signUp=0x7f07001a;
-        public static final int email=0x7f070018;
+        public static final int cancel_signUp=0x7f070019;
+        public static final int email=0x7f070017;
         public static final int emotionImage=0x7f07000f;
         public static final int fblogin=0x7f07000d;
         public static final int header=0x7f070007;
@@ -69,18 +68,18 @@ public final class R {
         public static final int linearLayout1=0x7f07000a;
         public static final int message=0x7f070010;
         public static final int messageHistory=0x7f07000e;
-        public static final int message_text=0x7f07001b;
+        public static final int message_text=0x7f07001a;
         public static final int newFriendUsername=0x7f070002;
         public static final int password=0x7f070009;
-        public static final int passwordAgain=0x7f070017;
+        public static final int passwordAgain=0x7f070016;
         public static final int sendMessageButton=0x7f070011;
-        public static final int signUp=0x7f070019;
+        public static final int signUp=0x7f070018;
         public static final int splashscreen=0x7f070006;
-        public static final int start=0x7f070014;
-        public static final int stop=0x7f070015;
+        public static final int start=0x7f070013;
+        public static final int stop=0x7f070014;
         public static final int text=0x7f070001;
-        public static final int text1=0x7f070013;
-        public static final int userName=0x7f070016;
+        public static final int text1=0x7f070012;
+        public static final int userName=0x7f070015;
         public static final int username=0x7f070008;
     }
     public static final class layout {
@@ -134,6 +133,7 @@ public final class R {
         public static final int signup_successfull=0x7f050017;
         public static final int signup_type_same_password_in_password_fields=0x7f050014;
         public static final int signup_username_crashed=0x7f050016;
+        public static final int timestamp=0x7f050029;
         public static final int type_friend_username=0x7f05001d;
         public static final int user_offline=0x7f05000e;
         public static final int username=0x7f050002;

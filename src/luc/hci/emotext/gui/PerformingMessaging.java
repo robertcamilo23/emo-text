@@ -1,7 +1,10 @@
 package luc.hci.emotext.gui;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import luc.hci.emotext.R;
@@ -28,6 +31,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -36,8 +40,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PerformingMessaging extends Activity
@@ -47,7 +51,8 @@ public class PerformingMessaging extends Activity
 	public String username;
 	private EditText messageText;
 	private ListView messageHistoryText;
-	private ImageView emotionImage;
+	private TextView timeStamp;
+	private ImageButton emotionImage;
 	private ImageButton sendMessageButton;
 	private ImageButton camButton;
 	private Manager imService;
@@ -86,9 +91,9 @@ public class PerformingMessaging extends Activity
 		messages = new ArrayList< Message >( );
 
 		// Camera button to send pictures / interpret emotion
-		camButton = ( ImageButton ) findViewById( R.id.camButton );
-
-		emotionImage = ( ImageView ) findViewById( R.id.emotionImage );
+		//camButton = ( ImageButton ) findViewById( R.id.camButton );
+		
+		emotionImage = ( ImageButton ) findViewById( R.id.emotionImage );
 		messageText = ( EditText ) findViewById( R.id.message );
 		messageText.requestFocus( );
 		sendMessageButton = ( ImageButton ) findViewById( R.id.sendMessageButton );
@@ -131,12 +136,12 @@ public class PerformingMessaging extends Activity
 		adapter = new AwesomeAdapter( getApplicationContext( ), messages );
 		messageHistoryText.setAdapter( adapter );
 
-		camButton.setOnClickListener( new View.OnClickListener( )
+		emotionImage.setOnClickListener( new View.OnClickListener( )
 		{
 			public void onClick( View v )
 			{
 
-				Toast.makeText( getApplicationContext( ), R.string.cam_notready, Toast.LENGTH_SHORT ).show( );
+				Toast.makeText( getApplicationContext( ), R.string.app_name, Toast.LENGTH_SHORT ).show( );
 				// Intent to take a picture and send it on the message.
 
 			}

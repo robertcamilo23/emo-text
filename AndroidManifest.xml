@@ -26,14 +26,14 @@
 			
 		</activity>
 		<service android:name="luc.hci.emotext.service.MessagingService"></service>
-		<activity android:name="luc.hci.emotext.gui.Login"  android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+		<activity android:name="luc.hci.emotext.gui.Login"  android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"></action>
 				<category android:name="android.intent.category.LAUNCHER">
 				</category>
 			</intent-filter>
 		</activity>
-		<activity android:name="luc.hci.emotext.gui.PerformingMessaging"  android:screenOrientation="portrait">
+		<activity android:name="luc.hci.emotext.gui.PerformingMessaging" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"></action>
 				<category
