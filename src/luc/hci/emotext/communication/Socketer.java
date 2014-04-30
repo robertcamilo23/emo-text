@@ -22,8 +22,8 @@ public class Socketer implements SocketerInterface
 {
 	// Here put IP_Address
 	//private static final String AUTHENTICATION_SERVER_ADDRESS = "http://192.168.1.148/AndroidChatterDatabase/";
-	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://192.168.1.183/emotext/";
-    //static final String AUTHENTICATION_SERVER_ADDRESS = "http://216.124.114.99/emotext/";
+	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://192.168.43.245/emotext/"; //T-Mobile Hotspot
+    //private static final String AUTHENTICATION_SERVER_ADDRESS = "http://216.124.114.99/emotext/"; // Work Server
 
 	private int listeningPort = 0;
 
