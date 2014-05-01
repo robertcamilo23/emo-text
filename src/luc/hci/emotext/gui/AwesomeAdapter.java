@@ -16,7 +16,7 @@ import android.widget.TextView;
 /**
  * AwesomeAdapter is a Custom class to implement custom row in ListView
  * 
- * @author Adil Soomro
+ * @author Adil Soomro modified by Robert Martinez
  * 
  */
 public class AwesomeAdapter extends BaseAdapter

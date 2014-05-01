@@ -14,9 +14,8 @@
 
         <ListView
             android:id="@+id/messageHistory"
-            android:layout_width="wrap_content"
-     		android:layout_height="0dp"
-        	android:layout_weight="0.81"
+            android:layout_width="fill_parent"
+            android:layout_height="400dp"
             android:clickable="true"
             android:editable="false"
             android:gravity="top"
@@ -25,6 +24,19 @@
             tools:ignore="NestedScrolling" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:hint="@string/enter_message" />
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -57,7 +69,7 @@
          	    android:src="@drawable/send_icon" />
 
         </LinearLayout>
-
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -279,7 +279,7 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_logo_image=0x7f040017;
         public static final int com_facebook_usersettingsfragment_profile_name=0x7f040018;
         public static final int email=0x7f040035;
-        public static final int emotionImage=0x7f04002d;
+        public static final int emotionImage=0x7f04002e;
         public static final int fragment=0x7f04001a;
         public static final int header=0x7f040022;
         public static final int icon=0x7f04001b;
@@ -288,7 +288,7 @@ containing a value of this type.
         public static final int linearLayout1=0x7f040025;
         public static final int linearLayout2=0x7f040028;
         public static final int login_fragment=0x7f04002a;
-        public static final int message=0x7f04002e;
+        public static final int message=0x7f04002d;
         public static final int messageHistory=0x7f04002c;
         public static final int message_text=0x7f040038;
         public static final int newFriendUsername=0x7f04001d;

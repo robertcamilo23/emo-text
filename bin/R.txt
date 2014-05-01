@@ -138,7 +138,7 @@ int id com_facebook_usersettingsfragment_login_button 0x7f040019
 int id com_facebook_usersettingsfragment_logo_image 0x7f040017
 int id com_facebook_usersettingsfragment_profile_name 0x7f040018
 int id email 0x7f040035
-int id emotionImage 0x7f04002d
+int id emotionImage 0x7f04002e
 int id fragment 0x7f04001a
 int id header 0x7f040022
 int id icon 0x7f04001b
@@ -147,7 +147,7 @@ int id large 0x7f040002
 int id linearLayout1 0x7f040025
 int id linearLayout2 0x7f040028
 int id login_fragment 0x7f04002a
-int id message 0x7f04002e
+int id message 0x7f04002d
 int id messageHistory 0x7f04002c
 int id message_text 0x7f040038
 int id newFriendUsername 0x7f04001d
